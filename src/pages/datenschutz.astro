@@ -1,0 +1,33 @@
+---
+import Legal from "../layouts/Legal.astro";
+import site from "../content/de/site.json";
+
+const { contact } = site;
+---
+
+<Legal title="Datenschutzerklärung">
+  <p class="todo">
+    Platzhalter: Die vollständige Datenschutzerklärung muss von der Schule erstellt werden
+    (z. B. mit einem Datenschutz-Generator oder durch eine Fachperson) – passend zum gewählten
+    Hosting, zum Kontaktformular und zu eingebundenen Diensten.
+  </p>
+
+  <h2>Verantwortliche Stelle</h2>
+  <address>
+    [Name der Inhaberin / des Unternehmens]<br />
+    {contact.street}, {contact.zip} {contact.city}<br />
+    E-Mail: <a href={`mailto:${contact.email}`}>{contact.email}</a>
+  </address>
+
+  <h2>Kontaktformular und Kontaktaufnahme</h2>
+  <p>[Welche Daten erhoben werden, Zweck, Rechtsgrundlage, Speicherdauer]</p>
+
+  <h2>Hosting</h2>
+  <p>[Anbieter, Server-Logfiles]</p>
+
+  <h2>Externe Links</h2>
+  <p>[WhatsApp, Instagram, TikTok, Google Maps – es werden nur Links gesetzt, keine Inhalte eingebettet]</p>
+
+  <h2>Ihre Rechte</h2>
+  <p>[Auskunft, Berichtigung, Löschung, Einschränkung, Widerspruch, Datenübertragbarkeit, Beschwerderecht]</p>
+</Legal>

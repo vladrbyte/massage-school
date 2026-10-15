@@ -1,0 +1,120 @@
+{
+  "brand": {
+    "name": "Zentrum für Wellness & Massage",
+    "tagline": "Massageschule in Nürnberg"
+  },
+  "seo": {
+    "title": "Massageschule Nürnberg – Zentrum für Wellness & Massage",
+    "description": "Ausbildung zur Massagepraktiker/in in Nürnberg: 220 Stunden Theorie und Praxis, individueller Stundenplan, Unterricht auf Deutsch und Russisch, Ratenzahlung möglich."
+  },
+  "contact": {
+    "phone": "+49 176 62600510",
+    "phoneHref": "tel:+4917662600510",
+    "whatsapp": "https://wa.me/4917662600510",
+    "email": "ksu.krug@gmail.com",
+    "street": "Turnerheimstraße 45",
+    "zip": "90441",
+    "city": "Nürnberg",
+    "hours": "Mo–So 10:00–19:00",
+    "hoursNote": "Nur nach vorheriger Terminvereinbarung",
+    "instagram": "https://www.instagram.com/massage_schule.de/",
+    "tiktok": "https://www.tiktok.com/@massageschule.iman"
+  },
+  "nav": [
+    { "label": "Ausbildung", "href": "/#ausbildung" },
+    { "label": "Kurse", "href": "/#kurse" },
+    { "label": "Ablauf", "href": "/#ablauf" },
+    { "label": "Team", "href": "/#team" },
+    { "label": "Bewertungen", "href": "/#bewertungen" },
+    { "label": "Kontakt", "href": "/#kontakt" }
+  ],
+  "cta": {
+    "primary": "Kostenlose Beratung",
+    "header": "Beratung anfragen"
+  },
+  "hero": {
+    "eyebrow": "Massageschule in Nürnberg",
+    "titleStart": "Werden Sie",
+    "titleAccent": "Massagepraktiker/in",
+    "lead": "220 Stunden Theorie und Praxis, ein Stundenplan, der zu Ihrem Leben passt, und ein Abschlusszertifikat, mit dem Sie direkt in den Beruf starten.",
+    "secondary": "Kurse ansehen",
+    "facts": [
+      { "value": "220", "unit": "Std.", "label": "Theorie & Praxis" },
+      { "value": "15", "unit": "Jahre", "label": "Erfahrung in Deutschland" },
+      { "value": "DE · RU", "unit": "", "label": "Unterricht & Prüfung" },
+      { "value": "12", "unit": "Monate", "label": "Ratenzahlung möglich" }
+    ],
+    "card": {
+      "title": "Start jederzeit",
+      "text": "Sie beginnen, wann es Ihnen passt – mit individuellem Stundenplan."
+    },
+    "media": {
+      "main": "Video: Hände bei der Massage (Loop, ohne Ton)",
+      "small": "Foto: Lehrerin mit Schülerin"
+    }
+  },
+  "services": {
+    "eyebrow": "Massage genießen",
+    "title": "Massage-Termine bei unseren Schülerinnen",
+    "text": "Unsere Schülerinnen massieren unter Aufsicht ihrer Lehrerin – mit viel Sorgfalt und Aufmerksamkeit. So unterstützen Sie die Ausbildung und gönnen sich gleichzeitig eine Auszeit.",
+    "items": ["Ganzkörpermassage", "Kopf- und Fußmassage", "Hot-Stone-Massage", "Gesichtsmassage"],
+    "note": "Preise und freie Termine auf Anfrage.",
+    "cta": "Termin per WhatsApp anfragen",
+    "media": "Foto: Schülerin massiert eine Kundin"
+  },
+  "contactSection": {
+    "eyebrow": "Kontakt",
+    "title": "Lassen Sie sich kostenlos beraten",
+    "lead": "Schreiben Sie uns – wir melden uns so schnell wie möglich und beantworten alle Fragen zur Ausbildung.",
+    "form": {
+      "name": "Ihr Name",
+      "contact": "Telefon oder E-Mail",
+      "interest": "Ich interessiere mich für",
+      "interestOptions": ["Ausbildung zur Massagepraktiker/in", "Einen bestimmten Kurs", "Einen Massage-Termin", "Etwas anderes"],
+      "message": "Nachricht (optional)",
+      "consent": "Ich bin damit einverstanden, dass meine Angaben zur Bearbeitung meiner Anfrage verwendet werden. Mehr dazu in der",
+      "consentLink": "Datenschutzerklärung",
+      "submit": "Anfrage senden",
+      "success": "Danke! Ihr E-Mail-Programm öffnet sich mit Ihrer Anfrage – bitte dort noch auf „Senden“ tippen.",
+      "error": "Bitte füllen Sie die markierten Felder aus."
+    },
+    "routeLabel": "Route planen"
+  },
+  "footer": {
+    "text": "Ausbildung zur Massagepraktiker/in und Massage-Termine in Nürnberg.",
+    "legal": [
+      { "label": "Impressum", "href": "/impressum" },
+      { "label": "Datenschutz", "href": "/datenschutz" }
+    ]
+  },
+  "sticky": {
+    "call": "Anrufen",
+    "whatsapp": "WhatsApp"
+  },
+  "ui": {
+    "home": "/",
+    "skip": "Zum Inhalt springen",
+    "homeLabel": "Startseite",
+    "mainNav": "Hauptnavigation",
+    "menuOpen": "Menü öffnen",
+    "language": "Sprache",
+    "filterCourses": "Kurse filtern",
+    "phone": "Telefon",
+    "email": "E-Mail",
+    "studio": "Studio",
+    "hours": "Öffnungszeiten",
+    "footerNav": "Footer-Navigation",
+    "footerPage": "Seite",
+    "footerContact": "Kontakt",
+    "footerFollow": "Folgen Sie uns",
+    "backHome": "← Zur Startseite",
+    "waMassage": "Hallo! Ich möchte gern einen Massage-Termin vereinbaren.",
+    "formSent": "Danke! Wir melden uns bald bei Ihnen.",
+    "formFailed": "Leider ist etwas schiefgelaufen. Bitte rufen Sie uns an oder schreiben Sie per WhatsApp.",
+    "mailSubject": "Anfrage",
+    "mailName": "Name",
+    "mailContact": "Kontakt",
+    "mailInterest": "Interesse",
+    "seal": "MASSAGEPRAKTIKER/IN · ZERTIFIKAT · NÜRNBERG ·"
+  }
+}

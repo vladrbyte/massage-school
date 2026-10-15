@@ -1,0 +1,99 @@
+---
+import { getContent } from "../i18n";
+import SectionHeader from "./SectionHeader.astro";
+
+const { faq } = getContent(Astro.url);
+---
+
+<section class="section faq" aria-labelledby="faq-title">
+  <div class="container faq__grid">
+    <SectionHeader id="faq-title" eyebrow={faq.eyebrow} title={faq.title} />
+
+    <div class="faq__list">
+      {faq.items.map((item, i) => (
+        <details class="qa" data-reveal style={`--reveal-delay: ${i * 0.04}s`}>
+          <summary class="qa__q">
+            <span>{item.q}</span>
+            <span class="qa__icon" aria-hidden="true"></span>
+          </summary>
+          <p class="qa__a">{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq__grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: clamp(2rem, 1rem + 4vw, 5rem);
+    align-items: start;
+  }
+
+  .faq__list {
+    border-top: 1px solid var(--color-line);
+  }
+
+  .qa {
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .qa__q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-5) 0;
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    line-height: 1.3;
+    color: var(--color-brown);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .qa__q::-webkit-details-marker { display: none; }
+
+  .qa__icon {
+    position: relative;
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--color-line);
+    border-radius: 50%;
+    transition: background-color 0.3s var(--ease), border-color 0.3s var(--ease);
+  }
+
+  .qa__icon::before,
+  .qa__icon::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 12px;
+    height: 1.5px;
+    background: var(--color-brown);
+    transform: translate(-50%, -50%);
+    transition: transform 0.3s var(--ease);
+  }
+
+  .qa__icon::after { transform: translate(-50%, -50%) rotate(90deg); }
+
+  .qa[open] .qa__icon { background: var(--color-accent); border-color: var(--color-accent); }
+  .qa[open] .qa__icon::before,
+  .qa[open] .qa__icon::after { background: #fff; }
+  .qa[open] .qa__icon::after { transform: translate(-50%, -50%) rotate(0deg); }
+
+  .qa__q:hover .qa__icon { border-color: var(--color-gold); }
+
+  .qa__a {
+    padding: 0 3rem var(--space-5) 0;
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 860px) {
+    .faq__grid { grid-template-columns: 1fr; }
+    .qa__a { padding-right: 0; }
+  }
+</style>

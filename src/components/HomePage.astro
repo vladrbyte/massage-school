@@ -1,0 +1,40 @@
+---
+// Вся главная страница. Язык определяется по адресу ("/" или "/ru/").
+import Base from "../layouts/Base.astro";
+import Header from "./Header.astro";
+import Hero from "./Hero.astro";
+import Training from "./Training.astro";
+import Pricing from "./Pricing.astro";
+import Courses from "./Courses.astro";
+import Steps from "./Steps.astro";
+import Certificate from "./Certificate.astro";
+import Team from "./Team.astro";
+import Services from "./Services.astro";
+import Reviews from "./Reviews.astro";
+import FAQ from "./FAQ.astro";
+import Contact from "./Contact.astro";
+import Footer from "./Footer.astro";
+import StickyCTA from "./StickyCTA.astro";
+import { getContent } from "../i18n";
+
+const { site } = getContent(Astro.url);
+---
+
+<Base title={site.seo.title} description={site.seo.description} alternates>
+  <Header />
+  <main id="main">
+    <Hero />
+    <Training />
+    <Pricing />
+    <Courses />
+    <Steps />
+    <Certificate />
+    <Team />
+    <Services />
+    <Reviews />
+    <FAQ />
+    <Contact />
+  </main>
+  <Footer />
+  <StickyCTA />
+</Base>

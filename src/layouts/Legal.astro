@@ -1,0 +1,73 @@
+---
+// Каркас для Impressum и Datenschutz
+import Base from "./Base.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { getContent } from "../i18n";
+
+const { site } = getContent(Astro.url);
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<Base title={`${title} – ${site.brand.name}`} description={`${title} der ${site.brand.tagline}.`}>
+  <Header />
+  <main id="main" class="legal">
+    <div class="container legal__inner">
+      <a class="legal__back" href={site.ui.home}>{site.ui.backHome}</a>
+      <h1>{title}</h1>
+      <div class="legal__content">
+        <slot />
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .legal {
+    padding-block: var(--space-7) var(--space-section);
+  }
+
+  .legal__inner {
+    max-width: 780px;
+  }
+
+  .legal__back {
+    display: inline-block;
+    margin-bottom: var(--space-5);
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .legal h1 {
+    font-size: var(--fs-h2);
+    margin-bottom: var(--space-6);
+  }
+
+  .legal__content :global(h2) {
+    margin: var(--space-6) 0 var(--space-3);
+    font-size: 1.6rem;
+  }
+
+  .legal__content :global(p),
+  .legal__content :global(address) {
+    margin-bottom: var(--space-3);
+    font-style: normal;
+  }
+
+  .legal__content :global(.todo) {
+    padding: var(--space-4);
+    margin-bottom: var(--space-5);
+    border: 1px dashed var(--color-gold);
+    border-radius: var(--radius-sm);
+    background: var(--color-surface);
+    font-size: var(--fs-sm);
+  }
+</style>

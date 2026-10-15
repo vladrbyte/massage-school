@@ -1,0 +1,80 @@
+{
+  "eyebrow": "Kurse",
+  "title": "13 Massagearten in einer Ausbildung",
+  "lead": "Alle Techniken sind Teil der 220-stündigen Ausbildung – von der klassischen Ganzkörpermassage bis zu Gua Sha.",
+  "groups": [
+    { "id": "all", "label": "Alle" },
+    { "id": "face", "label": "Gesicht" },
+    { "id": "body", "label": "Körper" },
+    { "id": "warmth", "label": "Wärme & Kräuter" },
+    { "id": "points", "label": "Reflexzonen & Punkte" },
+    { "id": "traditional", "label": "Traditionelle Methoden" }
+  ],
+  "items": [
+    {
+      "group": "face",
+      "name": "Klassische Gesichtsmassage mit myoplastischen Techniken",
+      "text": "Gezielte Arbeit mit der Gesichtsmuskulatur für ein entspanntes, frisches Hautbild."
+    },
+    {
+      "group": "face",
+      "name": "Klassische Gesichtsmassage mit bukkalen Elementen",
+      "text": "Ergänzt die klassische Gesichtsmassage um Techniken von der Innenseite der Wangen."
+    },
+    {
+      "group": "face",
+      "name": "Honig-Gesichtsmassage",
+      "text": "Sanfte Klopf- und Abhebetechnik mit Honig – pflegend und belebend."
+    },
+    {
+      "group": "body",
+      "name": "Ganzkörpermassage",
+      "text": "Die Grundlage jeder Ausbildung: Aufbau, Griffe und Ablauf einer vollständigen Behandlung."
+    },
+    {
+      "group": "body",
+      "name": "Schwedische Massage",
+      "text": "Klassische Streich-, Knet- und Reibetechniken für Entspannung und Lockerung."
+    },
+    {
+      "group": "body",
+      "name": "Ayurveda-Massage",
+      "text": "Ganzheitliche Ölmassage nach indischer Tradition mit fließenden, rhythmischen Bewegungen."
+    },
+    {
+      "group": "body",
+      "name": "Breuss-Massage",
+      "text": "Sanfte Rückenmassage entlang der Wirbelsäule mit Johanniskrautöl."
+    },
+    {
+      "group": "warmth",
+      "name": "Hot-Stone-Massage",
+      "text": "Erwärmte Basaltsteine und Massagegriffe für tiefe Entspannung."
+    },
+    {
+      "group": "warmth",
+      "name": "Kräuterstempelmassage",
+      "text": "Warme Stempel aus Kräutern und Leinen, die rhythmisch über den Körper geführt werden."
+    },
+    {
+      "group": "points",
+      "name": "Akupressur",
+      "text": "Druck auf ausgewählte Punkte – eine Technik aus der traditionellen chinesischen Lehre."
+    },
+    {
+      "group": "points",
+      "name": "Fußreflexzonenmassage",
+      "text": "Systematische Behandlung der Reflexzonen am Fuß."
+    },
+    {
+      "group": "traditional",
+      "name": "Schröpfen",
+      "text": "Arbeit mit Schröpfgläsern und Unterdruck – klassisch und als Schröpfmassage."
+    },
+    {
+      "group": "traditional",
+      "name": "Gua-Sha-Massage",
+      "text": "Streichtechnik mit Schabern aus Stein für Gesicht und Körper."
+    }
+  ]
+}

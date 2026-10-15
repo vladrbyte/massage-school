@@ -1,0 +1,100 @@
+---
+import { getContent } from "../i18n";
+import MediaPlaceholder from "./MediaPlaceholder.astro";
+
+const { team } = getContent(Astro.url);
+---
+
+<section class="section section--soft team" id="team" aria-labelledby="team-title">
+  <div class="container">
+    {team.members.map((m) => (
+      <article class="member">
+        <div class="member__photo-wrap" data-reveal>
+          <MediaPlaceholder class="member__photo" label={m.photo} />
+        </div>
+
+        <div class="member__body">
+          <p class="eyebrow" data-reveal>{team.eyebrow}</p>
+          <h2 id="team-title" class="member__heading" data-reveal>
+            {team.title}<span class="member__name">{m.name}</span>
+          </h2>
+          <p class="member__role" data-reveal>{m.role}</p>
+          <p class="member__experience" data-reveal>{m.experience}</p>
+          <p class="member__text" data-reveal>{m.text}</p>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .member {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: clamp(2rem, 1rem + 4vw, 5rem);
+    align-items: center;
+  }
+
+  .member__photo-wrap {
+    position: relative;
+  }
+
+  .member__photo-wrap::before {
+    /* золотая рамка-арка со смещением */
+    content: "";
+    position: absolute;
+    inset: 18px -18px -18px 18px;
+    border: 1px solid var(--color-gold);
+    border-radius: 999px 999px var(--radius-lg) var(--radius-lg);
+    opacity: 0.6;
+  }
+
+  .member__photo-wrap :global(.member__photo) {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    border-radius: 999px 999px var(--radius-lg) var(--radius-lg);
+    box-shadow: var(--shadow-card);
+  }
+
+  .member__body {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .member__heading {
+    display: grid;
+    gap: var(--space-1);
+  }
+
+  .member__name {
+    font-style: italic;
+    color: var(--color-sage);
+    font-size: 1.25em;
+  }
+
+  .member__role {
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+  }
+
+  .member__experience {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    line-height: 1.25;
+    color: var(--color-brown);
+    font-variant-numeric: lining-nums;
+  }
+
+  .member__text {
+    color: var(--color-text-muted);
+    max-width: 36em;
+  }
+
+  @media (max-width: 860px) {
+    .member { grid-template-columns: 1fr; }
+    .member__photo-wrap { max-width: 340px; margin-right: 18px; }
+  }
+</style>

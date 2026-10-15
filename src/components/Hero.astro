@@ -1,0 +1,242 @@
+---
+import { getContent } from "../i18n";
+import MediaPlaceholder from "./MediaPlaceholder.astro";
+
+const { site } = getContent(Astro.url);
+const { hero, cta } = site;
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  <!-- тонкая золотая линия, как "волна" в логотипе -->
+  <svg class="hero__swoosh" viewBox="0 0 1440 400" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M-20 330 C 300 250, 620 380, 920 300 S 1320 200, 1460 250" fill="none" stroke="currentColor" stroke-width="1.2" />
+    <path d="M-20 350 C 320 290, 640 400, 940 330 S 1330 240, 1460 280" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.6" />
+  </svg>
+
+  <div class="container hero__grid">
+    <div class="hero__text">
+      <p class="eyebrow">{hero.eyebrow}</p>
+
+      <h1 id="hero-title" class="hero__title">
+        {hero.titleStart}
+        <em>{hero.titleAccent}</em>
+      </h1>
+
+      <p class="lead hero__lead">{hero.lead}</p>
+
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#kontakt">{cta.primary}</a>
+        <a class="btn btn--ghost" href="#kurse">{hero.secondary}</a>
+      </div>
+
+      <dl class="facts">
+        {hero.facts.map((fact) => (
+          <div class="fact">
+            <dt class="fact__value">
+              {fact.value}
+              {fact.unit && <span class="fact__unit">{fact.unit}</span>}
+            </dt>
+            <dd class="fact__label">{fact.label}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+
+    <div class="hero__media">
+      <MediaPlaceholder class="hero__main" kind="video" label={hero.media.main} />
+      <MediaPlaceholder class="hero__small" kind="photo" label={hero.media.small} />
+
+      <div class="hero__card">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+          <path d="M12 3c2.5 3 2.5 6.5 0 10-2.5-3.5-2.5-7 0-10zM5 9c3 .4 5.4 2.6 7 6-3.7.6-6.4-1.4-7-6zm14 0c-.6 4.6-3.3 6.6-7 6 1.6-3.4 4-5.6 7-6z" fill="currentColor" />
+        </svg>
+        <div>
+          <p class="hero__card-title">{hero.card.title}</p>
+          <p class="hero__card-text">{hero.card.text}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(2.5rem, 1.5rem + 4vw, 5.5rem) clamp(3.5rem, 2rem + 5vw, 7rem);
+  }
+
+  .hero__swoosh {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 60%;
+    color: var(--color-gold);
+    opacity: 0.45;
+    pointer-events: none;
+  }
+
+  .hero__grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: clamp(2rem, 1rem + 4vw, 5rem);
+    align-items: center;
+  }
+
+  /* Текст */
+  .hero__title {
+    margin-top: var(--space-5);
+  }
+
+  .hero__title em {
+    display: block;
+    font-style: italic;
+    color: var(--color-sage);
+  }
+
+  .hero__lead {
+    margin-top: var(--space-5);
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+  }
+
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    justify-content: start;
+    gap: var(--space-5) clamp(1.25rem, 0.5rem + 2vw, 2.5rem);
+    margin: var(--space-7) 0 0;
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--color-line);
+  }
+
+  .fact { margin: 0; }
+
+  .fact__value {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--color-brown);
+    white-space: nowrap;
+    font-variant-numeric: lining-nums;
+  }
+
+  .fact__unit {
+    margin-left: 0.25rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-gold);
+  }
+
+  .fact__label {
+    margin: var(--space-2) 0 0;
+    font-size: var(--fs-sm);
+    line-height: 1.35;
+    color: var(--color-text-muted);
+    max-width: 14ch;
+  }
+
+  /* Медиа: арка + маленькое фото + карточка */
+  .hero__media {
+    position: relative;
+    padding: 0 0 var(--space-7) var(--space-7);
+  }
+
+  .hero__media :global(.hero__main) {
+    aspect-ratio: 4 / 5;
+    border-radius: 999px 999px var(--radius-lg) var(--radius-lg);
+    box-shadow: var(--shadow-card);
+  }
+
+  .hero__media :global(.hero__small) {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 42%;
+    aspect-ratio: 1;
+    border-radius: var(--radius-lg);
+    border: 6px solid var(--color-bg);
+    box-shadow: var(--shadow-card);
+  }
+
+  .hero__card {
+    position: absolute;
+    right: calc(var(--space-5) * -1);
+    top: 18%;
+    display: flex;
+    gap: var(--space-3);
+    max-width: 240px;
+    padding: var(--space-4) var(--space-5);
+    background: rgb(255 252 245 / 0.92);
+    backdrop-filter: blur(6px);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    color: var(--color-sage);
+  }
+
+  .hero__card svg { flex-shrink: 0; margin-top: 2px; }
+
+  .hero__card-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--color-brown);
+  }
+
+  .hero__card-text {
+    margin-top: var(--space-1);
+    font-size: var(--fs-sm);
+    line-height: 1.45;
+    color: var(--color-text-muted);
+  }
+
+  /* Плавное появление */
+  .hero__text > *,
+  .hero__media {
+    animation: rise 0.9s var(--ease) both;
+  }
+  .hero__text > :nth-child(2) { animation-delay: 0.08s; }
+  .hero__text > :nth-child(3) { animation-delay: 0.16s; }
+  .hero__text > :nth-child(4) { animation-delay: 0.24s; }
+  .hero__text > :nth-child(5) { animation-delay: 0.32s; }
+  .hero__media { animation-delay: 0.2s; }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  /* Планшет */
+  @media (max-width: 980px) {
+    .hero__grid { grid-template-columns: 1fr; }
+    .hero__media { max-width: 520px; width: 100%; margin-inline: auto; }
+    .hero__card { right: 0; }
+    .facts { grid-template-columns: repeat(2, auto); }
+  }
+
+  /* Телефон */
+  @media (max-width: 520px) {
+    .hero__actions .btn { flex: 1 1 100%; }
+    .hero__media { padding: 0; }
+    .hero__media :global(.hero__small) { display: none; }
+    .hero__swoosh { height: 220px; }
+    .hero__card {
+      position: relative;
+      top: auto;
+      right: auto;
+      max-width: none;
+      margin: calc(var(--space-7) * -1) var(--space-4) 0;
+    }
+    .fact__value { font-size: 1.7rem; }
+  }
+</style>

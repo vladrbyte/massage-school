@@ -1,0 +1,31 @@
+---
+import Legal from "../layouts/Legal.astro";
+import site from "../content/de/site.json";
+
+const { contact } = site;
+---
+
+<Legal title="Impressum">
+  <p class="todo">
+    Entwurf: Die Angaben in eckigen Klammern müssen von der Schule ergänzt und vor dem Livegang geprüft werden.
+  </p>
+
+  <h2>Angaben gemäß § 5 DDG</h2>
+  <address>
+    [Vor- und Nachname der Inhaberin / Name des Unternehmens]<br />
+    {contact.street}<br />
+    {contact.zip} {contact.city}
+  </address>
+
+  <h2>Kontakt</h2>
+  <p>
+    Telefon: {contact.phone}<br />
+    E-Mail: <a href={`mailto:${contact.email}`}>{contact.email}</a>
+  </p>
+
+  <h2>Umsatzsteuer-ID</h2>
+  <p>[Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG, falls vorhanden]</p>
+
+  <h2>Verantwortlich für den Inhalt</h2>
+  <p>[Name, Anschrift wie oben]</p>
+</Legal>

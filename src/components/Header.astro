@@ -1,0 +1,304 @@
+---
+import { getContent, getLang, langHome } from "../i18n";
+
+const { site } = getContent(Astro.url);
+const lang = getLang(Astro.url);
+const { brand, nav, cta, ui } = site;
+const langs = [
+  { code: "de", label: "DE", href: langHome.de },
+  { code: "ru", label: "RU", href: langHome.ru },
+] as const;
+---
+
+<header class="header" data-header>
+  <div class="container header__bar">
+    <a class="brand" href={ui.home} aria-label={`${brand.name} – ${ui.homeLabel}`}>
+      <img
+        class="brand__mark"
+        src="/media/logo-mark.png"
+        alt=""
+        width="420"
+        height="290"
+      />
+      <span class="brand__text">
+        <span class="brand__name">{brand.name}</span>
+        <span class="brand__tagline">{brand.tagline}</span>
+      </span>
+    </a>
+
+    <nav class="nav" id="site-nav" data-nav aria-label={ui.mainNav}>
+      <ul class="nav__list">
+        {nav.map((item) => (
+          <li><a class="nav__link" href={item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+      <a class="btn btn--primary btn--sm nav__cta-mobile" href={`${ui.home}#kontakt`}>{cta.header}</a>
+    </nav>
+
+    <div class="header__actions">
+      <div class="lang lang--bar" aria-label={ui.language}>
+        {langs.map((l, i) => (
+          <>
+            {i > 0 && <span class="lang__sep" aria-hidden="true">/</span>}
+            <a class:list={["lang__item", { "is-active": l.code === lang }]} href={l.href} hreflang={l.code} aria-current={l.code === lang ? "true" : undefined}>{l.label}</a>
+          </>
+        ))}
+      </div>
+      <a class="btn btn--primary btn--sm header__cta" href={`${ui.home}#kontakt`}>{cta.header}</a>
+      <button
+        class="burger"
+        type="button"
+        aria-controls="site-nav"
+        aria-expanded="false"
+        data-nav-toggle
+      >
+        <span class="visually-hidden">{ui.menuOpen}</span>
+        <span class="burger__line burger__line--top"></span>
+        <span class="burger__line burger__line--bottom"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<script>
+  const header = document.querySelector<HTMLElement>("[data-header]");
+  const toggle = document.querySelector<HTMLButtonElement>("[data-nav-toggle]");
+  const nav = document.querySelector<HTMLElement>("[data-nav]");
+
+  function setOpen(open: boolean) {
+    toggle?.setAttribute("aria-expanded", String(open));
+    nav?.classList.toggle("is-open", open);
+    document.documentElement.classList.toggle("nav-locked", open);
+  }
+
+  toggle?.addEventListener("click", () => {
+    setOpen(toggle.getAttribute("aria-expanded") !== "true");
+  });
+
+  nav?.querySelectorAll("a").forEach((link) =>
+    link.addEventListener("click", () => setOpen(false))
+  );
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") setOpen(false);
+  });
+
+  // тень у шапки после начала прокрутки
+  const onScroll = () => header?.classList.toggle("is-scrolled", window.scrollY > 8);
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+</script>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--color-bg);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  }
+
+  .header.is-scrolled {
+    border-bottom-color: var(--color-line);
+    box-shadow: 0 6px 24px -18px rgb(117 86 55 / 0.45);
+  }
+
+  .header__bar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+    height: var(--header-h);
+  }
+
+  /* Логотип */
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-right: auto;
+    text-decoration: none;
+    min-width: 0;
+  }
+
+  .brand__mark {
+    width: 58px;
+    height: auto;
+    flex-shrink: 0;
+  }
+
+  .brand__text {
+    display: grid;
+    line-height: 1.1;
+    min-width: 0;
+  }
+
+  .brand__name {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-brown);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .brand__tagline {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-sage);
+  }
+
+  /* Навигация */
+  .nav__list {
+    display: flex;
+    gap: var(--space-5);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .nav__link {
+    position: relative;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--color-text);
+    padding-block: var(--space-2);
+  }
+
+  .nav__link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: var(--color-gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s var(--ease);
+  }
+
+  .nav__link:hover::after { transform: scaleX(1); }
+
+  .nav__cta-mobile { display: none; }
+
+  .header__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .header__cta { white-space: nowrap; }
+
+  .lang {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: var(--fs-sm);
+    font-weight: 600;
+  }
+
+  .lang__item {
+    color: var(--color-text-muted);
+    text-decoration: none;
+  }
+  .lang__item:hover { color: var(--color-accent); }
+  .lang__item.is-active { color: var(--color-brown); }
+  .lang__sep { color: var(--color-line); }
+
+
+  .burger {
+    display: none;
+    position: relative;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--color-line);
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .burger__line {
+    position: absolute;
+    left: 13px;
+    right: 13px;
+    height: 1.5px;
+    background: var(--color-brown);
+    transition: transform 0.3s var(--ease), top 0.3s var(--ease);
+  }
+
+  .burger__line--top { top: 17px; }
+  .burger__line--bottom { top: 25px; }
+
+  .burger[aria-expanded="true"] .burger__line--top { top: 21px; transform: rotate(45deg); }
+  .burger[aria-expanded="true"] .burger__line--bottom { top: 21px; transform: rotate(-45deg); }
+
+  /* Планшет и телефон */
+  @media (max-width: 1200px) {
+    .burger { display: block; }
+    .header__cta { display: none; }
+
+    .nav {
+      position: fixed;
+      inset: var(--header-h) 0 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+      padding: var(--space-6) var(--gutter);
+      overflow-y: auto; /* на низких экранах меню прокручивается */
+      background: var(--color-bg);
+      border-top: 1px solid var(--color-line);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transition: opacity 0.3s var(--ease), transform 0.3s var(--ease), visibility 0.3s;
+    }
+
+    .nav.is-open {
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+    }
+
+    .nav__list {
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .nav__link {
+      display: block;
+      padding-block: var(--space-4);
+      font-family: var(--font-display);
+      font-size: 1.7rem;
+      color: var(--color-brown);
+      border-bottom: 1px solid var(--color-line);
+    }
+
+    .nav__link::after { display: none; }
+
+    .nav__cta-mobile {
+      display: inline-flex;
+      min-height: 52px;
+      font-size: var(--fs-base);
+    }
+
+  }
+
+  @media (max-width: 480px) {
+    .brand { gap: var(--space-2); }
+    .brand__mark { width: 40px; }
+    /* на телефоне название в две строки, подпись скрыта — она есть в первом экране */
+    .brand__name { font-size: 1rem; line-height: 1.1; white-space: normal; text-wrap: balance; max-width: 11em; }
+    .brand__tagline { display: none; }
+    .lang { gap: 0.2rem; }
+    .header__bar { gap: var(--space-3); }
+    .header__actions { gap: var(--space-3); }
+    .lang__item { padding: 0.6rem 0.15rem; } /* удобнее попадать пальцем */
+  }
+
+  :global(html.nav-locked) { overflow: hidden; }
+</style>

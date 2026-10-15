@@ -1,0 +1,104 @@
+---
+import { getContent } from "../i18n";
+import MediaPlaceholder from "./MediaPlaceholder.astro";
+
+const { site } = getContent(Astro.url);
+const { services, contact, ui } = site;
+const waText = encodeURIComponent(ui.waMassage);
+---
+
+<section class="section services" aria-labelledby="massage-title">
+  <div class="container services__card" data-reveal>
+    <div class="services__media">
+      <MediaPlaceholder class="services__photo" label={services.media} />
+    </div>
+
+    <div class="services__body">
+      <p class="eyebrow">{services.eyebrow}</p>
+      <h2 id="massage-title">{services.title}</h2>
+      <p class="services__text">{services.text}</p>
+
+      <ul class="services__list">
+        {services.items.map((item) => <li>{item}</li>)}
+      </ul>
+
+      <p class="services__note">{services.note}</p>
+
+      <a
+        class="btn btn--primary"
+        href={`${contact.whatsapp}?text=${waText}`}
+        target="_blank"
+        rel="noopener"
+      >
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+          <path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.7 11.7 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z" />
+        </svg>
+        {services.cta}
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .services__card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+  }
+
+  /* у .container свой padding — внутри карточки он не нужен */
+  .services__card.container {
+    padding-inline: 0;
+    width: calc(100% - 2 * var(--gutter));
+  }
+
+  .services__media :global(.services__photo) {
+    height: 100%;
+    min-height: 320px;
+  }
+
+  .services__body {
+    display: grid;
+    align-content: center;
+    gap: var(--space-4);
+    padding: clamp(1.75rem, 1rem + 3vw, 3.5rem);
+  }
+
+  .services__text { color: var(--color-text-muted); }
+
+  .services__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: var(--space-2) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .services__list li {
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-pill);
+    background: var(--color-surface);
+    font-size: 0.95rem;
+    color: var(--color-brown);
+  }
+
+  .services__note {
+    font-size: var(--fs-sm);
+    color: var(--color-text-muted);
+  }
+
+  .services__body .btn { justify-self: start; }
+
+  @media (max-width: 860px) {
+    .services__card { grid-template-columns: 1fr; }
+    .services__media :global(.services__photo) { min-height: 0; aspect-ratio: 16 / 10; }
+    .services__body .btn { justify-self: stretch; }
+  }
+</style>

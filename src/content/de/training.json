@@ -1,0 +1,93 @@
+{
+  "about": {
+    "eyebrow": "Ausbildung",
+    "title": "Massage lernen – mit Ruhe, Praxis und persönlicher Begleitung",
+    "lead": "Seit 15 Jahren bilden wir in Deutschland Massagepraktikerinnen und -praktiker aus. In 220 Stunden lernen Sie Theorie und Technik – und alles, was Sie für einen sicheren Start in den Beruf brauchen.",
+    "extras": {
+      "title": "Mehr als Technik",
+      "items": [
+        "Marketing für Masseurinnen und Masseure",
+        "Grundlagen der Finanzplanung",
+        "Psychologie im Umgang mit Kundinnen und Kunden"
+      ]
+    },
+    "media": "Foto: Praxisunterricht im Studio"
+  },
+  "formats": {
+    "title": "Drei Wege zum Abschluss",
+    "items": [
+      {
+        "icon": "online",
+        "name": "Online",
+        "text": "Für alle, die ihre Ausbildung vertiefen oder eine im Ausland erworbene Massagequalifikation bei uns bestätigen möchten."
+      },
+      {
+        "icon": "studio",
+        "name": "Präsenz",
+        "text": "Praxis im Einzelunterricht mit der Lehrerin in unserem Studio. Hausaufgaben werden persönlich besprochen und kontrolliert.",
+        "highlight": true
+      },
+      {
+        "icon": "mixed",
+        "name": "Kombiniert",
+        "text": "Theorie im Gruppenchat und in zusätzlichen Online-Stunden, kurze eigene Präsentationen – die Praxis findet im Studio statt."
+      }
+    ]
+  },
+  "price": {
+    "eyebrow": "Preis",
+    "title": "Komplette Ausbildung",
+    "amount": "2.600 €",
+    "note": "Theorie und Praxis, 220 Stunden",
+    "installments": "Ratenzahlung über bis zu 12 Monate möglich",
+    "includesTitle": "Inklusive",
+    "includes": [
+      "Lernmaterial als PDF",
+      "Arbeitsheft: Anatomie, Techniken, Indikationen und Kontraindikationen",
+      "Praxis-Videos zum Wiederholen",
+      "Abschlussprüfung und Zertifikat"
+    ]
+  },
+  "requirements": {
+    "title": "Voraussetzungen",
+    "items": [
+      "Mindestalter 18 Jahre",
+      "Freude am Lernen und an Selbstständigkeit",
+      "Keine medizinische Vorbildung nötig",
+      "Arbeitskleidung (wird individuell abgestimmt)"
+    ],
+    "equipment": "Die Ausstattung – Schröpfgläser, Ohrkerzen, Massageöl, Hot Stones und eine Massageliege für die Hausaufgaben – schaffen Sie nach und nach an, mit Beratung durch Ihre Lehrerin."
+  },
+  "certificate": {
+    "eyebrow": "Abschluss",
+    "title": "Zertifikat „Massagepraktiker/in“",
+    "text": "Nach bestandener Abschlussprüfung erhalten Sie das Zertifikat unserer Schule.",
+    "careersTitle": "Hier arbeiten unsere Absolventinnen",
+    "careers": [
+      "Wellness- und Spa-Salons",
+      "Sportzentren",
+      "Physiotherapiepraxen",
+      "Hotels",
+      "Schwimmbäder und Thermen",
+      "Eigenes Gewerbe"
+    ]
+  },
+  "steps": {
+    "eyebrow": "Ablauf",
+    "title": "In drei Schritten zum Zertifikat",
+    "items": [
+      {
+        "title": "Lernen",
+        "text": "Unterricht besuchen und Video-Lektionen ansehen – wann es Ihnen passt, immer mit Unterstützung Ihrer Lehrerin."
+      },
+      {
+        "title": "Üben",
+        "text": "Praktische Hausaufgaben erledigen und Techniken unter Anleitung trainieren, bis jeder Griff sitzt."
+      },
+      {
+        "title": "Abschließen",
+        "text": "Zwischentest und Abschlussprüfung bestehen – und Ihr Zertifikat entgegennehmen."
+      }
+    ]
+  }
+}

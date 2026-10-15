@@ -1,0 +1,108 @@
+---
+import { getContent } from "../i18n";
+
+const { training, site } = getContent(Astro.url);
+const { certificate } = training;
+---
+
+<section class="section certificate" aria-labelledby="zertifikat-title">
+  <div class="container certificate__grid">
+    <div class="seal-wrap" data-reveal>
+      <!-- декоративная "печать" сертификата -->
+      <svg class="seal" viewBox="0 0 240 240" aria-hidden="true">
+        <defs>
+          <path id="seal-circle" d="M120 120 m-86 0 a86 86 0 1 1 172 0 a86 86 0 1 1 -172 0" />
+        </defs>
+        <circle cx="120" cy="120" r="112" fill="none" stroke="currentColor" stroke-width="1" />
+        <circle cx="120" cy="120" r="70" fill="none" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2 5" />
+        <text font-size="13" letter-spacing="5" fill="currentColor">
+          <textPath href="#seal-circle">{site.ui.seal}</textPath>
+        </text>
+        <g transform="translate(120 120)" fill="currentColor">
+          <g class="seal__mark">
+            <path d="M0-34c9 10.5 9 23 0 36-9-13-9-25.5 0-36z" opacity=".9" />
+            <path d="M-30-12c12 1.2 22 9.5 30 22-15 3-27-5-30-22zM30-12c-3 17-15 25-30 22 8-12.5 18-20.8 30-22z" opacity=".65" />
+            <rect x="-26" y="18" width="52" height="1.2" />
+          </g>
+        </g>
+      </svg>
+    </div>
+
+    <div class="certificate__text">
+      <p class="eyebrow" data-reveal>{certificate.eyebrow}</p>
+      <h2 id="zertifikat-title" data-reveal>{certificate.title}</h2>
+      <p class="lead" data-reveal>{certificate.text}</p>
+
+      <h3 class="careers__title" data-reveal>{certificate.careersTitle}</h3>
+      <ul class="careers" data-reveal>
+        {certificate.careers.map((c) => <li>{c}</li>)}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .certificate__grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: clamp(2rem, 1rem + 4vw, 5rem);
+    align-items: center;
+  }
+
+  .seal-wrap {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1;
+    max-width: 360px;
+    width: 100%;
+    margin-inline: auto;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--color-surface) 0 62%, transparent 63%);
+  }
+
+  .seal {
+    width: 88%;
+    color: var(--color-gold);
+    animation: spin 60s linear infinite;
+  }
+
+  .seal__mark { animation: spin 60s linear infinite reverse; transform-origin: 0 0; }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .seal, .seal__mark { animation: none; }
+  }
+
+  .certificate__text {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .careers__title {
+    margin-top: var(--space-5);
+    font-size: 1.5rem;
+  }
+
+  .careers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .careers li {
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-pill);
+    background: #fff;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 800px) {
+    .certificate__grid { grid-template-columns: 1fr; }
+    .seal-wrap { max-width: 240px; }
+  }
+</style>

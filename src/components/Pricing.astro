@@ -1,0 +1,174 @@
+---
+import { getContent } from "../i18n";
+
+const { training, site } = getContent(Astro.url);
+const { price, requirements } = training;
+---
+
+<section class="section section--soft pricing" aria-labelledby="preis-title">
+  <div class="container pricing__grid">
+    <article class="price-card" data-reveal>
+      <p class="eyebrow price-card__eyebrow">{price.eyebrow}</p>
+      <h2 id="preis-title" class="price-card__title">{price.title}</h2>
+      <p class="price-card__amount">{price.amount}</p>
+      <p class="price-card__note">{price.note}</p>
+      <p class="price-card__badge">{price.installments}</p>
+
+      <h3 class="price-card__subtitle">{price.includesTitle}</h3>
+      <ul class="leaf-list price-card__list">
+        {price.includes.map((item) => <li>{item}</li>)}
+      </ul>
+
+      <a class="btn price-card__btn" href="#kontakt">{site.cta.primary}</a>
+    </article>
+
+    <article class="req-card" data-reveal style="--reveal-delay: .1s">
+      <h2 class="req-card__title">{requirements.title}</h2>
+      <ul class="req-list">
+        {requirements.items.map((item) => (
+          <li>
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+              <circle cx="12" cy="12" r="10.5" fill="none" stroke="currentColor" stroke-width="1" />
+              <path d="M7.5 12.5l3 3 6-6.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+      <p class="req-card__equipment">{requirements.equipment}</p>
+    </article>
+  </div>
+</section>
+
+<style>
+  .pricing__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-5);
+    align-items: stretch;
+  }
+
+  /* Карточка цены */
+  .price-card {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(1.75rem, 1rem + 3vw, 3rem);
+    background: var(--color-brown);
+    color: #f6eee1;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+  }
+
+  .price-card::after {
+    /* мягкий золотой круг на фоне */
+    content: "";
+    position: absolute;
+    right: -120px;
+    top: -120px;
+    width: 320px;
+    height: 320px;
+    border: 1px solid rgb(184 146 90 / 0.5);
+    border-radius: 50%;
+    box-shadow: 0 0 0 40px rgb(184 146 90 / 0.06);
+    pointer-events: none;
+  }
+
+  .price-card__eyebrow { color: #e4cfa6; }
+  .price-card__eyebrow::before { background: #e4cfa6; }
+
+  .price-card__title {
+    margin-top: var(--space-4);
+    color: #fff;
+    font-size: var(--fs-h3);
+  }
+
+  .price-card__amount {
+    margin-top: var(--space-4);
+    font-family: var(--font-display);
+    font-size: clamp(3.4rem, 2.6rem + 3vw, 5rem);
+    font-weight: 600;
+    line-height: 1;
+    font-variant-numeric: lining-nums;
+    color: #fff;
+  }
+
+  .price-card__note {
+    margin-top: var(--space-2);
+    color: rgb(246 238 225 / 0.8);
+  }
+
+  .price-card__badge {
+    display: inline-block;
+    margin-top: var(--space-5);
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid rgb(228 207 166 / 0.5);
+    border-radius: var(--radius-md);
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    color: #e4cfa6;
+  }
+
+  .price-card__subtitle {
+    margin: var(--space-6) 0 var(--space-4);
+    font-size: 1.35rem;
+    color: #fff;
+  }
+
+  .price-card__list li::before { background: #e4cfa6; }
+
+  .price-card__btn {
+    margin-top: var(--space-6);
+    background: #fffcf5;
+    color: var(--color-brown);
+  }
+
+  .price-card__btn:hover { background: #fff; }
+
+  /* Карточка требований */
+  .req-card {
+    display: flex;
+    flex-direction: column;
+    padding: clamp(1.75rem, 1rem + 3vw, 3rem);
+    background: var(--color-bg);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+  }
+
+  .req-card__title {
+    font-size: var(--fs-h3);
+    margin-bottom: var(--space-5);
+  }
+
+  .req-list {
+    display: grid;
+    gap: var(--space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .req-list li {
+    display: flex;
+    gap: var(--space-3);
+    align-items: flex-start;
+  }
+
+  .req-list svg {
+    flex-shrink: 0;
+    margin-top: 3px;
+    color: var(--color-sage);
+  }
+
+  .req-card__equipment {
+    margin-top: auto;
+    padding-top: var(--space-6);
+    font-size: var(--fs-sm);
+    color: var(--color-text-muted);
+    border-top: 1px dashed var(--color-line);
+  }
+
+  @media (max-width: 900px) {
+    .pricing__grid { grid-template-columns: 1fr; }
+    .req-card__equipment { margin-top: var(--space-6); }
+  }
+</style>
