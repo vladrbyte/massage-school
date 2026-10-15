@@ -1,4 +1,6 @@
 ---
+// Шапка: гамбургер слева, логотип, справа язык и кнопка консультации.
+// Меню на всех размерах экрана открывается панелью слева.
 import { getContent, getLang, langHome, withBase } from "../i18n";
 
 const { site } = getContent(Astro.url);
@@ -12,6 +14,18 @@ const langs = [
 
 <header class="header" data-header>
   <div class="container header__bar">
+    <button
+      class="burger"
+      type="button"
+      aria-controls="site-nav"
+      aria-expanded="false"
+      data-nav-toggle
+    >
+      <span class="visually-hidden">{ui.menuOpen}</span>
+      <span class="burger__line burger__line--top"></span>
+      <span class="burger__line burger__line--bottom"></span>
+    </button>
+
     <a class="brand" href={withBase(ui.home)} aria-label={`${brand.name} – ${ui.homeLabel}`}>
       <img
         class="brand__mark"
@@ -26,17 +40,8 @@ const langs = [
       </span>
     </a>
 
-    <nav class="nav" id="site-nav" data-nav aria-label={ui.mainNav}>
-      <ul class="nav__list">
-        {nav.map((item) => (
-          <li><a class="nav__link" href={withBase(item.href)}>{item.label}</a></li>
-        ))}
-      </ul>
-      <a class="btn btn--primary btn--sm nav__cta-mobile" href={withBase(`${ui.home}#kontakt`)}>{cta.header}</a>
-    </nav>
-
     <div class="header__actions">
-      <div class="lang lang--bar" aria-label={ui.language}>
+      <div class="lang" aria-label={ui.language}>
         {langs.map((l, i) => (
           <>
             {i > 0 && <span class="lang__sep" aria-hidden="true">/</span>}
@@ -45,35 +50,43 @@ const langs = [
         ))}
       </div>
       <a class="btn btn--primary btn--sm header__cta" href={withBase(`${ui.home}#kontakt`)}>{cta.header}</a>
-      <button
-        class="burger"
-        type="button"
-        aria-controls="site-nav"
-        aria-expanded="false"
-        data-nav-toggle
-      >
-        <span class="visually-hidden">{ui.menuOpen}</span>
-        <span class="burger__line burger__line--top"></span>
-        <span class="burger__line burger__line--bottom"></span>
-      </button>
     </div>
   </div>
+
+  <div class="nav-backdrop" data-nav-backdrop hidden></div>
+
+  <nav class="nav" id="site-nav" data-nav aria-label={ui.mainNav}>
+    <ul class="nav__list">
+      {nav.map((item) => (
+        <li><a class="nav__link" href={withBase(item.href)}>{item.label}</a></li>
+      ))}
+    </ul>
+    <a class="btn btn--primary nav__cta" href={withBase(`${ui.home}#kontakt`)}>{cta.header}</a>
+  </nav>
 </header>
 
 <script>
   const header = document.querySelector<HTMLElement>("[data-header]");
   const toggle = document.querySelector<HTMLButtonElement>("[data-nav-toggle]");
   const nav = document.querySelector<HTMLElement>("[data-nav]");
+  const backdrop = document.querySelector<HTMLElement>("[data-nav-backdrop]");
 
   function setOpen(open: boolean) {
     toggle?.setAttribute("aria-expanded", String(open));
     nav?.classList.toggle("is-open", open);
+    if (backdrop) {
+      if (open) backdrop.hidden = false;
+      requestAnimationFrame(() => backdrop.classList.toggle("is-visible", open));
+      if (!open) setTimeout(() => (backdrop.hidden = true), 300);
+    }
     document.documentElement.classList.toggle("nav-locked", open);
   }
 
   toggle?.addEventListener("click", () => {
     setOpen(toggle.getAttribute("aria-expanded") !== "true");
   });
+
+  backdrop?.addEventListener("click", () => setOpen(false));
 
   nav?.querySelectorAll("a").forEach((link) =>
     link.addEventListener("click", () => setOpen(false))
@@ -105,11 +118,44 @@ const langs = [
   }
 
   .header__bar {
+    position: relative;
+    z-index: 2; /* шапка над панелью меню */
     display: flex;
     align-items: center;
-    gap: var(--space-5);
+    gap: var(--space-4);
     height: var(--header-h);
+    background: var(--color-bg);
   }
+
+  /* Гамбургер */
+  .burger {
+    position: relative;
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--color-line);
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+    transition: border-color 0.3s var(--ease);
+  }
+
+  .burger:hover { border-color: var(--color-gold); }
+
+  .burger__line {
+    position: absolute;
+    left: 13px;
+    right: 13px;
+    height: 1.5px;
+    background: var(--color-brown);
+    transition: transform 0.3s var(--ease), top 0.3s var(--ease);
+  }
+
+  .burger__line--top { top: 17px; }
+  .burger__line--bottom { top: 25px; }
+
+  .burger[aria-expanded="true"] .burger__line--top { top: 21px; transform: rotate(45deg); }
+  .burger[aria-expanded="true"] .burger__line--bottom { top: 21px; transform: rotate(-45deg); }
 
   /* Логотип */
   .brand {
@@ -122,7 +168,7 @@ const langs = [
   }
 
   .brand__mark {
-    width: 58px;
+    width: 54px;
     height: auto;
     flex-shrink: 0;
   }
@@ -151,41 +197,7 @@ const langs = [
     color: var(--color-sage);
   }
 
-  /* Навигация */
-  .nav__list {
-    display: flex;
-    gap: var(--space-5);
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .nav__link {
-    position: relative;
-    font-size: 0.95rem;
-    font-weight: 500;
-    text-decoration: none;
-    color: var(--color-text);
-    padding-block: var(--space-2);
-  }
-
-  .nav__link::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 1px;
-    background: var(--color-gold);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s var(--ease);
-  }
-
-  .nav__link:hover::after { transform: scaleX(1); }
-
-  .nav__cta-mobile { display: none; }
-
+  /* Справа: язык и кнопка */
   .header__actions {
     display: flex;
     align-items: center;
@@ -203,101 +215,92 @@ const langs = [
   }
 
   .lang__item {
+    padding: 0.5rem 0.15rem;
     color: var(--color-text-muted);
     text-decoration: none;
   }
+
   .lang__item:hover { color: var(--color-accent); }
   .lang__item.is-active { color: var(--color-brown); }
   .lang__sep { color: var(--color-line); }
 
-
-  .burger {
-    display: none;
-    position: relative;
-    width: 44px;
-    height: 44px;
-    border: 1px solid var(--color-line);
-    border-radius: 50%;
-    background: transparent;
-    cursor: pointer;
+  /* Панель меню слева */
+  .nav {
+    position: fixed;
+    top: var(--header-h);
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    width: min(380px, 100%);
+    padding: var(--space-5) var(--gutter) var(--space-6);
+    overflow-y: auto;
+    background: var(--color-bg);
+    border-top: 1px solid var(--color-line);
+    border-right: 1px solid var(--color-line);
+    box-shadow: 20px 0 40px -30px rgb(117 86 55 / 0.5);
+    transform: translateX(-102%);
+    visibility: hidden;
+    transition: transform 0.4s var(--ease), visibility 0.4s;
   }
 
-  .burger__line {
-    position: absolute;
-    left: 13px;
-    right: 13px;
-    height: 1.5px;
-    background: var(--color-brown);
-    transition: transform 0.3s var(--ease), top 0.3s var(--ease);
+  .nav.is-open {
+    transform: none;
+    visibility: visible;
   }
 
-  .burger__line--top { top: 17px; }
-  .burger__line--bottom { top: 25px; }
+  .nav__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
 
-  .burger[aria-expanded="true"] .burger__line--top { top: 21px; transform: rotate(45deg); }
-  .burger[aria-expanded="true"] .burger__line--bottom { top: 21px; transform: rotate(-45deg); }
+  .nav__link {
+    display: block;
+    padding-block: var(--space-4);
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    line-height: 1.2;
+    color: var(--color-brown);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-line);
+    transition: color 0.25s var(--ease), padding-left 0.25s var(--ease);
+  }
 
-  /* Планшет и телефон */
-  @media (max-width: 1200px) {
-    .burger { display: block; }
+  .nav__link:hover {
+    color: var(--color-sage);
+    padding-left: var(--space-2);
+  }
+
+  .nav__cta { width: 100%; }
+
+  /* затемнение страницы за меню */
+  .nav-backdrop {
+    position: fixed;
+    inset: var(--header-h) 0 0 0;
+    z-index: 0;
+    background: rgb(58 57 48 / 0.25);
+    opacity: 0;
+    transition: opacity 0.3s var(--ease);
+  }
+
+  .nav-backdrop.is-visible { opacity: 1; }
+
+  /* Кнопку в шапке на узких экранах прячем — она есть в меню */
+  @media (max-width: 760px) {
     .header__cta { display: none; }
-
-    .nav {
-      position: fixed;
-      inset: var(--header-h) 0 0 0;
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-6);
-      padding: var(--space-6) var(--gutter);
-      overflow-y: auto; /* на низких экранах меню прокручивается */
-      background: var(--color-bg);
-      border-top: 1px solid var(--color-line);
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(-8px);
-      transition: opacity 0.3s var(--ease), transform 0.3s var(--ease), visibility 0.3s;
-    }
-
-    .nav.is-open {
-      opacity: 1;
-      visibility: visible;
-      transform: none;
-    }
-
-    .nav__list {
-      flex-direction: column;
-      gap: 0;
-    }
-
-    .nav__link {
-      display: block;
-      padding-block: var(--space-4);
-      font-family: var(--font-display);
-      font-size: 1.7rem;
-      color: var(--color-brown);
-      border-bottom: 1px solid var(--color-line);
-    }
-
-    .nav__link::after { display: none; }
-
-    .nav__cta-mobile {
-      display: inline-flex;
-      min-height: 52px;
-      font-size: var(--fs-base);
-    }
-
   }
 
   @media (max-width: 480px) {
+    .header__bar { gap: var(--space-3); }
     .brand { gap: var(--space-2); }
     .brand__mark { width: 40px; }
     /* на телефоне название в две строки, подпись скрыта — она есть в первом экране */
-    .brand__name { font-size: 1rem; line-height: 1.1; white-space: normal; text-wrap: balance; max-width: 11em; }
+    .brand__name { font-size: 1rem; white-space: normal; text-wrap: balance; max-width: 11em; }
     .brand__tagline { display: none; }
     .lang { gap: 0.2rem; }
-    .header__bar { gap: var(--space-3); }
-    .header__actions { gap: var(--space-3); }
-    .lang__item { padding: 0.6rem 0.15rem; } /* удобнее попадать пальцем */
   }
 
   :global(html.nav-locked) { overflow: hidden; }
