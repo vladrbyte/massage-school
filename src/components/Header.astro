@@ -1,5 +1,5 @@
 ---
-import { getContent, getLang, langHome } from "../i18n";
+import { getContent, getLang, langHome, withBase } from "../i18n";
 
 const { site } = getContent(Astro.url);
 const lang = getLang(Astro.url);
@@ -12,10 +12,10 @@ const langs = [
 
 <header class="header" data-header>
   <div class="container header__bar">
-    <a class="brand" href={ui.home} aria-label={`${brand.name} – ${ui.homeLabel}`}>
+    <a class="brand" href={withBase(ui.home)} aria-label={`${brand.name} – ${ui.homeLabel}`}>
       <img
         class="brand__mark"
-        src="/media/logo-mark.png"
+        src={withBase("/media/logo-mark.png")}
         alt=""
         width="420"
         height="290"
@@ -29,10 +29,10 @@ const langs = [
     <nav class="nav" id="site-nav" data-nav aria-label={ui.mainNav}>
       <ul class="nav__list">
         {nav.map((item) => (
-          <li><a class="nav__link" href={item.href}>{item.label}</a></li>
+          <li><a class="nav__link" href={withBase(item.href)}>{item.label}</a></li>
         ))}
       </ul>
-      <a class="btn btn--primary btn--sm nav__cta-mobile" href={`${ui.home}#kontakt`}>{cta.header}</a>
+      <a class="btn btn--primary btn--sm nav__cta-mobile" href={withBase(`${ui.home}#kontakt`)}>{cta.header}</a>
     </nav>
 
     <div class="header__actions">
@@ -44,7 +44,7 @@ const langs = [
           </>
         ))}
       </div>
-      <a class="btn btn--primary btn--sm header__cta" href={`${ui.home}#kontakt`}>{cta.header}</a>
+      <a class="btn btn--primary btn--sm header__cta" href={withBase(`${ui.home}#kontakt`)}>{cta.header}</a>
       <button
         class="burger"
         type="button"

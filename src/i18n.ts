@@ -16,13 +16,23 @@ import ruFaq from "./content/ru/faq.json";
 
 export type Lang = "de" | "ru";
 
+// Префикс сайта: локально "", на GitHub Pages — "/название-репо" (см. astro.config.mjs)
+const BASE = import.meta.env.BASE_URL.replace(/\/+$/, "");
+
+/** Внутренняя ссылка или файл из public/ с учётом префикса: withBase("/ru/") */
+export function withBase(path: string): string {
+  if (/^(https?:|mailto:|tel:|#)/.test(path)) return path;
+  return BASE + (path.startsWith("/") ? path : `/${path}`);
+}
+
 const content = {
   de: { site: deSite, training: deTraining, courses: deCourses, team: deTeam, reviews: deReviews, faq: deFaq },
   ru: { site: ruSite, training: ruTraining, courses: ruCourses, team: ruTeam, reviews: ruReviews, faq: ruFaq },
 };
 
 export function getLang(url: URL): Lang {
-  return url.pathname === "/ru" || url.pathname.startsWith("/ru/") ? "ru" : "de";
+  const path = BASE && url.pathname.startsWith(BASE) ? url.pathname.slice(BASE.length) : url.pathname;
+  return path === "/ru" || path.startsWith("/ru/") ? "ru" : "de";
 }
 
 export function getContent(url: URL) {
@@ -30,4 +40,4 @@ export function getContent(url: URL) {
 }
 
 // Адрес главной на каждом языке — для переключателя
-export const langHome: Record<Lang, string> = { de: "/", ru: "/ru/" };
+export const langHome: Record<Lang, string> = { de: withBase("/"), ru: withBase("/ru/") };

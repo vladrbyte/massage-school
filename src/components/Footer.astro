@@ -1,5 +1,5 @@
 ---
-import { getContent } from "../i18n";
+import { getContent, withBase } from "../i18n";
 
 const { site } = getContent(Astro.url);
 const { brand, nav, contact, footer, ui } = site;
@@ -9,14 +9,14 @@ const year = new Date().getFullYear();
 <footer class="footer">
   <div class="container footer__grid">
     <div class="footer__brand">
-      <img src="/media/logo-full.jpg" alt={brand.name} width="1079" height="405" loading="lazy" />
+      <img src={withBase("/media/logo-full.jpg")} alt={brand.name} width="1079" height="405" loading="lazy" />
       <p>{footer.text}</p>
     </div>
 
     <nav aria-label={ui.footerNav}>
       <h2 class="footer__title">{ui.footerPage}</h2>
       <ul class="footer__list">
-        {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+        {nav.map((item) => <li><a href={withBase(item.href)}>{item.label}</a></li>)}
       </ul>
     </nav>
 
@@ -50,7 +50,7 @@ const year = new Date().getFullYear();
   <div class="container footer__bottom">
     <p>© {year} {brand.name} · {brand.tagline}</p>
     <ul class="footer__legal">
-      {footer.legal.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+      {footer.legal.map((l) => <li><a href={withBase(l.href)}>{l.label}</a></li>)}
     </ul>
   </div>
 </footer>

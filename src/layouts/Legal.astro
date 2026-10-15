@@ -3,7 +3,7 @@
 import Base from "./Base.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import { getContent } from "../i18n";
+import { getContent, withBase } from "../i18n";
 
 const { site } = getContent(Astro.url);
 
@@ -18,7 +18,7 @@ const { title } = Astro.props;
   <Header />
   <main id="main" class="legal">
     <div class="container legal__inner">
-      <a class="legal__back" href={site.ui.home}>{site.ui.backHome}</a>
+      <a class="legal__back" href={withBase(site.ui.home)}>{site.ui.backHome}</a>
       <h1>{title}</h1>
       <div class="legal__content">
         <slot />

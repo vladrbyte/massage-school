@@ -1,5 +1,5 @@
 ---
-import { getContent, getLang } from "../i18n";
+import { getContent, getLang, withBase } from "../i18n";
 
 const { site } = getContent(Astro.url);
 const lang = getLang(Astro.url);
@@ -102,7 +102,7 @@ const FORM_ENDPOINT = "";
 
       <label class="consent">
         <input type="checkbox" name="consent" required />
-        <span>{f.consent} <a href="/datenschutz" hreflang="de">{f.consentLink}</a>.</span>
+        <span>{f.consent} <a href={withBase("/datenschutz")} hreflang="de">{f.consentLink}</a>.</span>
       </label>
 
       <button class="btn btn--primary form__submit" type="submit">{f.submit}</button>
