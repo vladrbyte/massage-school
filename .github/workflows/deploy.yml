@@ -1,4 +1,3 @@
-# Сборка и публикация превью на GitHub Pages при каждом push в основную ветку
 name: Deploy to GitHub Pages
 
 on:
@@ -25,7 +24,6 @@ jobs:
       - name: Build with Astro
         uses: withastro/action@v6
         env:
-          # превью закрыто от поисковиков (meta robots noindex)
           PUBLIC_PREVIEW: "true"
 
   deploy:

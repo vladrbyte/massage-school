@@ -1,5 +1,4 @@
 ---
-// Общий каркас страницы: <head>, шрифты, глобальные стили
 import "@fontsource/cormorant-garamond/500.css";
 import "@fontsource/cormorant-garamond/500-italic.css";
 import "@fontsource/cormorant-garamond/600.css";
@@ -8,7 +7,6 @@ import "../styles/tokens.css";
 import "../styles/base.css";
 import { getContent, getLang, langHome, withBase } from "../i18n";
 
-// На превью (GitHub Pages) страницы закрыты от поисковиков
 const isPreview = import.meta.env.PUBLIC_PREVIEW === "true";
 
 interface Props {
@@ -52,7 +50,6 @@ const { site } = getContent(Astro.url);
     <slot />
 
     <script>
-      // Появление блоков с data-reveal при прокрутке
       const items = document.querySelectorAll<HTMLElement>("[data-reveal]");
       if (!("IntersectionObserver" in window)) {
         items.forEach((el) => el.classList.add("is-visible"));

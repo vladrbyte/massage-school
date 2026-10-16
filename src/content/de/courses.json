@@ -1,80 +1,140 @@
 {
   "eyebrow": "Kurse",
-  "title": "13 Massagearten in einer Ausbildung",
-  "lead": "Alle Techniken sind Teil der 220-stündigen Ausbildung – von der klassischen Ganzkörpermassage bis zu Gua Sha.",
+  "title": "10 Massagearten in einem Lehrgang",
+  "lead": "Alle Techniken gehören zum 220-stündigen Lehrgang:",
+  "program": {
+    "colNum": "Nr.",
+    "colModule": "Praxismodul",
+    "colHours": "Unterrichtsstunden",
+    "items": [
+      { "name": "Reflexzonenmassage an Füßen und Händen", "hours": 10 },
+      { "name": "Breuss-Massage", "hours": 10 },
+      { "name": "Aromamassage", "hours": 10 },
+      { "name": "Ganzkörpermassage – Basismassage des ganzen Körpers", "hours": 25 },
+      { "name": "Hot-Stone-Massage", "hours": 10 },
+      { "name": "Massage mit Kräuterstempeln und Kirschkernsäckchen", "hours": 10 },
+      { "name": "Schröpf- und apparative Vakuum-Wellnessmassage", "hours": 14 },
+      { "name": "Schwedische Wellnessmassage", "hours": 20 },
+      { "name": "Sport-Wellnessmassage mit Elementen lymphatischer Massagetechniken und Dehnung", "hours": 24 },
+      { "name": "Entspannende Ölmassage mit Lomi-Lomi-Elementen oder klassische Wellnessmassage für Gesicht, Hals und Dekolleté – nach Wahl", "hours": 16 },
+      { "name": "Vorbereitung auf die Abschlussprüfung und Abschlussprüfung", "hours": 21, "exam": true }
+    ]
+  },
+  "catalog": {
+    "title": "Unsere Massagetechniken",
+    "lead": "Techniken, die zum 220-stündigen Lehrgang gehören, sind markiert.",
+    "inProgram": "Im Lehrgang"
+  },
   "groups": [
     { "id": "all", "label": "Alle" },
     { "id": "face", "label": "Gesicht" },
     { "id": "body", "label": "Körper" },
-    { "id": "warmth", "label": "Wärme & Kräuter" },
-    { "id": "points", "label": "Reflexzonen & Punkte" },
-    { "id": "traditional", "label": "Traditionelle Methoden" }
+    { "id": "warmth", "label": "Wärme" },
+    { "id": "points", "label": "Punkte & Reflexzonen" },
+    { "id": "special", "label": "Spezielle Techniken" }
   ],
   "items": [
     {
       "group": "face",
-      "name": "Klassische Gesichtsmassage mit myoplastischen Techniken",
-      "text": "Gezielte Arbeit mit der Gesichtsmuskulatur für ein entspanntes, frisches Hautbild."
-    },
-    {
-      "group": "face",
-      "name": "Klassische Gesichtsmassage mit bukkalen Elementen",
-      "text": "Ergänzt die klassische Gesichtsmassage um Techniken von der Innenseite der Wangen."
+      "name": "Klassische Gesichtsmassage mit modellierenden Techniken",
+      "text": "Kombination aus klassischen und modellierenden Massagegriffen für die Gesichtsmuskulatur, zur Entspannung und für ein frischeres Hautbild."
     },
     {
       "group": "face",
       "name": "Honig-Gesichtsmassage",
-      "text": "Sanfte Klopf- und Abhebetechnik mit Honig – pflegend und belebend."
+      "text": "Massage mit naturreinem Honig und speziellen Abhebe-Bewegungen für eine sanfte Wirkung auf die Gesichtshaut."
     },
     {
       "group": "body",
+      "inProgram": true,
       "name": "Ganzkörpermassage",
-      "text": "Die Grundlage jeder Ausbildung: Aufbau, Griffe und Ablauf einer vollständigen Behandlung."
+      "text": "Umfassende Massagetechnik, die nacheinander alle wichtigen Körperzonen behandelt – zum Lösen von Muskelverspannungen und für tiefe Entspannung."
     },
     {
       "group": "body",
+      "inProgram": true,
       "name": "Schwedische Massage",
-      "text": "Klassische Streich-, Knet- und Reibetechniken für Entspannung und Lockerung."
+      "text": "Klassisches Massagesystem aus Streichungen, Reibungen, Knetungen, Vibrationen und Klopfungen zur Behandlung der Weichteile und Lockerung der Muskulatur."
     },
     {
       "group": "body",
       "name": "Ayurveda-Massage",
-      "text": "Ganzheitliche Ölmassage nach indischer Tradition mit fließenden, rhythmischen Bewegungen."
+      "text": "Traditionelle indische Ölmassage mit warmem Öl, fließenden, rhythmischen Bewegungen und sanften Einreibungen zur Entspannung des Körpers."
+    },
+    {
+      "group": "special",
+      "inProgram": true,
+      "name": "Breuss-Massage",
+      "text": "Sanfte Rückenmassage mit Johanniskrautöl. Langsame, fließende, dehnende Bewegungen entlang der Wirbelsäule – ganz ohne Kraftaufwand. Ziel ist die Dehnung der Rückenmuskulatur und die Entlastung der Bandscheiben."
+    },
+    {
+      "group": "warmth",
+      "inProgram": true,
+      "name": "Hot-Stone-Massage",
+      "text": "Massage mit erwärmten Basaltsteinen: fließende Gleitbewegungen, sanfter Druck und Wärme für eine tiefe Entspannung der Muskulatur."
+    },
+    {
+      "group": "warmth",
+      "inProgram": true,
+      "name": "Kräuterstempelmassage",
+      "text": "Massage mit warmen, mit Kräutern gefüllten Stempeln. Sanfter Druck, Rollen und rhythmische Berührungen für tiefe Entspannung."
+    },
+    {
+      "group": "points",
+      "name": "Shiatsu",
+      "text": "Japanische Massagetechnik mit rhythmischem Druck von Handflächen und Fingern, sanften Dehnungen und Körperarbeit für tiefe Entspannung."
+    },
+    {
+      "group": "points",
+      "inProgram": true,
+      "name": "Reflexzonenmassage an Füßen und Händen",
+      "text": "Massage der Reflexzonen an Füßen und Händen mit speziellen Druck-, Reibe- und Knettechniken."
+    },
+    {
+      "group": "special",
+      "inProgram": true,
+      "name": "Schröpfmassage",
+      "text": "Massage mit speziellen Schröpfgläsern, die einen Unterdruck auf Haut und Weichteile erzeugen – mit statischen und dynamischen Techniken."
     },
     {
       "group": "body",
-      "name": "Breuss-Massage",
-      "text": "Sanfte Rückenmassage entlang der Wirbelsäule mit Johanniskrautöl."
+      "inProgram": true,
+      "name": "Aromamassage",
+      "text": "Entspannende Massage mit Basis- und ätherischen Ölen: fließende Massagebewegungen und individuell abgestimmte Düfte."
     },
     {
       "group": "warmth",
-      "name": "Hot-Stone-Massage",
-      "text": "Erwärmte Basaltsteine und Massagegriffe für tiefe Entspannung."
+      "inProgram": true,
+      "name": "Massage mit warmen Kirschkernsäckchen",
+      "text": "Wärmemassage mit erhitzten, mit Kirschkernen gefüllten Säckchen: sanfter Druck, Rollen und fließende Bewegungen."
     },
     {
-      "group": "warmth",
-      "name": "Kräuterstempelmassage",
-      "text": "Warme Stempel aus Kräutern und Leinen, die rhythmisch über den Körper geführt werden."
+      "group": "special",
+      "inProgram": true,
+      "name": "Sport-Wellnessmassage mit sanften Lymph- und Dehntechniken",
+      "text": "Kombination aus sportlichen Massagegriffen, sanften oberflächlichen Bewegungen und passiven Dehnungen zur Entspannung der Muskulatur nach körperlicher Belastung."
     },
     {
-      "group": "points",
-      "name": "Akupressur",
-      "text": "Druck auf ausgewählte Punkte – eine Technik aus der traditionellen chinesischen Lehre."
+      "group": "body",
+      "inProgram": true,
+      "name": "Entspannende Ölmassage mit Lomi-Lomi-Elementen",
+      "text": "Ölmassage mit Elementen der hawaiianischen Lomi-Lomi-Tradition: lange, fließende Bewegungen mit Handflächen und Unterarmen, die ein Gefühl von Kontinuität und tiefer Entspannung schaffen."
     },
     {
-      "group": "points",
-      "name": "Fußreflexzonenmassage",
-      "text": "Systematische Behandlung der Reflexzonen am Fuß."
+      "group": "face",
+      "inProgram": true,
+      "name": "Klassische Wellnessmassage für Gesicht, Hals und Dekolleté",
+      "text": "Klassische Massagegriffe zur Entspannung der Muskulatur von Gesicht, Hals und Dekolleté – für ein schöneres Hautbild und mehr Wohlbefinden."
     },
     {
-      "group": "traditional",
-      "name": "Schröpfen",
-      "text": "Arbeit mit Schröpfgläsern und Unterdruck – klassisch und als Schröpfmassage."
+      "group": "special",
+      "name": "Anti-Cellulite-Massagetechniken",
+      "text": "Intensive Massagegriffe für Haut und Unterhautgewebe, die Aussehen und Struktur der Haut verbessern sollen."
     },
     {
-      "group": "traditional",
-      "name": "Gua-Sha-Massage",
-      "text": "Streichtechnik mit Schabern aus Stein für Gesicht und Körper."
+      "group": "special",
+      "name": "Dorn-Methode – Einführungskurs",
+      "text": "Einführung in die Prinzipien der Dorn-Methode: sanfte manuelle Techniken kombiniert mit aktiven Bewegungen. Besonderes Augenmerk liegt auf der sicheren Ausführung und den Grenzen der Methode."
     }
   ]
 }

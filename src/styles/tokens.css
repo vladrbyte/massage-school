@@ -1,21 +1,18 @@
-/* Дизайн-токены. Все цвета, шрифты и отступы меняются только здесь. */
 :root {
-  /* Цвета — взяты из логотипа */
-  --color-bg: #fffcf5;          /* фон логотипа */
-  --color-surface: #f7f0e3;     /* мягкие блоки */
+  --color-bg: #fffcf5;
+  --color-surface: #f7f0e3;
   --color-surface-2: #efe5d2;
   --color-line: #e6dcc9;
 
   --color-text: #3a3930;
   --color-text-muted: #6a695b;
 
-  --color-brown: #755637;       /* "Zentrum für" в логотипе */
-  --color-sage: #7d8a68;        /* листья */
-  --color-accent: #5f6c4c;      /* кнопки, контраст с белым 5.6:1 */
+  --color-brown: #755637;
+  --color-sage: #7d8a68;
+  --color-accent: #5f6c4c;
   --color-accent-hover: #4e5a3d;
-  --color-gold: #b8925a;        /* тонкие линии и детали */
+  --color-gold: #b8925a;
 
-  /* Шрифты */
   --font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
   --font-body: "Manrope Variable", system-ui, -apple-system, "Segoe UI", sans-serif;
 
@@ -26,7 +23,6 @@
   --fs-h2: clamp(2rem, 1.6rem + 1.8vw, 3rem);
   --fs-h1: clamp(2.6rem, 1.8rem + 3.6vw, 4.6rem);
 
-  /* Отступы */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -37,7 +33,6 @@
   --space-8: 4rem;
   --space-section: clamp(4rem, 3rem + 5vw, 7.5rem);
 
-  /* Формы */
   --radius-sm: 8px;
   --radius-md: 16px;
   --radius-lg: 28px;
@@ -45,7 +40,6 @@
   --shadow-soft: 0 10px 30px -12px rgb(117 86 55 / 0.25);
   --shadow-card: 0 2px 6px rgb(117 86 55 / 0.06), 0 18px 40px -20px rgb(117 86 55 / 0.3);
 
-  /* Сетка */
   --container: 1180px;
   --gutter: clamp(1rem, 0.5rem + 2.5vw, 2rem);
   --header-h: 76px;

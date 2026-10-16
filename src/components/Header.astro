@@ -1,6 +1,4 @@
 ---
-// Шапка: гамбургер слева, логотип, справа язык и кнопка консультации.
-// Меню на всех размерах экрана открывается панелью слева.
 import { getContent, getLang, langHome, withBase } from "../i18n";
 
 const { site } = getContent(Astro.url);
@@ -96,7 +94,6 @@ const langs = [
     if (e.key === "Escape") setOpen(false);
   });
 
-  // тень у шапки после начала прокрутки
   const onScroll = () => header?.classList.toggle("is-scrolled", window.scrollY > 8);
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
@@ -119,7 +116,7 @@ const langs = [
 
   .header__bar {
     position: relative;
-    z-index: 2; /* шапка над панелью меню */
+    z-index: 2;
     display: flex;
     align-items: center;
     gap: var(--space-4);
@@ -127,7 +124,6 @@ const langs = [
     background: var(--color-bg);
   }
 
-  /* Гамбургер */
   .burger {
     position: relative;
     flex-shrink: 0;
@@ -157,7 +153,6 @@ const langs = [
   .burger[aria-expanded="true"] .burger__line--top { top: 21px; transform: rotate(45deg); }
   .burger[aria-expanded="true"] .burger__line--bottom { top: 21px; transform: rotate(-45deg); }
 
-  /* Логотип */
   .brand {
     display: flex;
     align-items: center;
@@ -190,6 +185,9 @@ const langs = [
   }
 
   .brand__tagline {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     font-size: 0.72rem;
     font-weight: 600;
     letter-spacing: 0.14em;
@@ -197,7 +195,6 @@ const langs = [
     color: var(--color-sage);
   }
 
-  /* Справа: язык и кнопка */
   .header__actions {
     display: flex;
     align-items: center;
@@ -224,7 +221,6 @@ const langs = [
   .lang__item.is-active { color: var(--color-brown); }
   .lang__sep { color: var(--color-line); }
 
-  /* Панель меню слева */
   .nav {
     position: fixed;
     top: var(--header-h);
@@ -276,7 +272,6 @@ const langs = [
 
   .nav__cta { width: 100%; }
 
-  /* затемнение страницы за меню */
   .nav-backdrop {
     position: fixed;
     inset: var(--header-h) 0 0 0;
@@ -288,7 +283,6 @@ const langs = [
 
   .nav-backdrop.is-visible { opacity: 1; }
 
-  /* Кнопку в шапке на узких экранах прячем — она есть в меню */
   @media (max-width: 760px) {
     .header__cta { display: none; }
   }
@@ -297,7 +291,6 @@ const langs = [
     .header__bar { gap: var(--space-3); }
     .brand { gap: var(--space-2); }
     .brand__mark { width: 40px; }
-    /* на телефоне название в две строки, подпись скрыта — она есть в первом экране */
     .brand__name { font-size: 1rem; white-space: normal; text-wrap: balance; max-width: 11em; }
     .brand__tagline { display: none; }
     .lang { gap: 0.2rem; }

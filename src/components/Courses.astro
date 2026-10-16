@@ -3,11 +3,41 @@ import { getContent } from "../i18n";
 import SectionHeader from "./SectionHeader.astro";
 
 const { courses, site } = getContent(Astro.url);
+const { program, catalog } = courses;
 ---
 
 <section class="section courses" id="kurse" aria-labelledby="kurse-title">
   <div class="container">
     <SectionHeader id="kurse-title" eyebrow={courses.eyebrow} title={courses.title} lead={courses.lead} />
+
+    <div class="program" data-reveal>
+      <table class="program__table">
+        <thead>
+          <tr>
+            <th scope="col" class="program__num">{program.colNum}</th>
+            <th scope="col">{program.colModule}</th>
+            <th scope="col" class="program__hours">{program.colHours}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {program.items.map((m, i) => (
+            <tr class:list={{ "is-exam": m.exam }}>
+              <td class="program__num">{String(i + 1).padStart(2, "0")}</td>
+              <td class="program__name">{m.name}</td>
+              <td class="program__hours">{m.hours}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <header class="catalog__header" data-reveal>
+      <h3 class="catalog__title">{catalog.title}</h3>
+      <p class="catalog__lead">
+        <span class="badge" aria-hidden="true">{catalog.inProgram}</span>
+        {catalog.lead}
+      </p>
+    </header>
 
     <div class="filters" role="group" aria-label={site.ui.filterCourses} data-reveal>
       {courses.groups.map((g, i) => (
@@ -24,9 +54,12 @@ const { courses, site } = getContent(Astro.url);
 
     <ul class="course-grid" data-courses>
       {courses.items.map((item, i) => (
-        <li class="course" data-group={item.group} data-reveal style={`--reveal-delay: ${(i % 3) * 0.06}s`}>
-          <span class="course__num" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
-          <h3 class="course__name">{item.name}</h3>
+        <li class:list={["course", { "course--program": item.inProgram }]} data-group={item.group} data-reveal style={`--reveal-delay: ${(i % 3) * 0.06}s`}>
+          <div class="course__top">
+            <span class="course__num" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+            {item.inProgram && <span class="badge">{catalog.inProgram}</span>}
+          </div>
+          <h4 class="course__name">{item.name}</h4>
           <p class="course__text">{item.text}</p>
           <span class="course__tag">{courses.groups.find((g) => g.id === item.group)?.label}</span>
         </li>
@@ -53,6 +86,103 @@ const { courses, site } = getContent(Astro.url);
 </script>
 
 <style>
+  .program {
+    overflow: hidden;
+    margin-bottom: clamp(3.5rem, 2.5rem + 4vw, 6rem);
+    background: #fff;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .program__table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .program__table th {
+    padding: var(--space-4) var(--space-5);
+    background: var(--color-surface);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-align: left;
+    text-transform: uppercase;
+    color: var(--color-sage);
+  }
+
+  .program__table td {
+    padding: var(--space-4) var(--space-5);
+    border-top: 1px solid var(--color-line);
+    vertical-align: top;
+  }
+
+  .program__table tbody tr { transition: background-color 0.2s var(--ease); }
+  .program__table tbody tr:hover { background: rgb(247 240 227 / 0.5); }
+
+  .program__num {
+    width: 4rem;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-variant-numeric: lining-nums;
+    color: var(--color-gold);
+  }
+
+  .program__table th.program__num,
+  .program__table th.program__hours {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    color: var(--color-sage);
+  }
+
+  .program__name { line-height: 1.45; }
+
+  .program__hours {
+    width: 9rem;
+    text-align: right !important;
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 600;
+    font-variant-numeric: lining-nums tabular-nums;
+    color: var(--color-brown);
+    white-space: nowrap;
+  }
+
+  .program__table tr.is-exam td {
+    background: var(--color-surface);
+    font-weight: 600;
+  }
+
+  .catalog__header {
+    display: grid;
+    gap: var(--space-3);
+    margin-bottom: var(--space-5);
+  }
+
+  .catalog__title { font-size: var(--fs-h3); }
+
+  .catalog__lead {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+    color: var(--color-text-muted);
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.7rem;
+    border-radius: var(--radius-pill);
+    background: var(--color-accent);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
   .filters {
     display: flex;
     flex-wrap: wrap;
@@ -103,11 +233,20 @@ const { courses, site } = getContent(Astro.url);
     transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
   }
 
+  .course--program { border-color: rgb(95 108 76 / 0.35); }
+
   .course[hidden] { display: none; }
 
   .course:hover {
     border-color: var(--color-gold);
     box-shadow: var(--shadow-soft);
+  }
+
+  .course__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
   }
 
   .course__num {
@@ -119,7 +258,7 @@ const { courses, site } = getContent(Astro.url);
   }
 
   .course__name {
-    font-size: 1.45rem;
+    font-size: 1.4rem;
     line-height: 1.15;
   }
 
@@ -154,5 +293,11 @@ const { courses, site } = getContent(Astro.url);
       scrollbar-width: none;
     }
     .filter { flex-shrink: 0; }
+
+    .program__table th,
+    .program__table td { padding: var(--space-3); }
+    .program__num { width: 2.5rem; }
+    .program__hours { width: auto; font-size: 1.15rem; }
+    .program__table th.program__hours { font-size: 0.65rem; white-space: normal; }
   }
 </style>

@@ -1,6 +1,4 @@
 ---
-// Плейсхолдер для фото/видео. Позже заменяется на <Image> или <video>
-// с теми же размерами, поэтому вёрстка не поедет.
 interface Props {
   label: string;
   kind?: "photo" | "video";
@@ -42,7 +40,6 @@ const { label, kind = "photo", class: className } = Astro.props;
   }
 
   .placeholder::after {
-    /* лёгкая "ткань", чтобы блок не выглядел пустым */
     content: "";
     position: absolute;
     inset: 0;

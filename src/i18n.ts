@@ -1,5 +1,3 @@
-// Языки сайта. Немецкий — основной (адрес "/"), русский — "/ru/".
-// Компоненты получают тексты через getContent(Astro.url).
 import deSite from "./content/de/site.json";
 import deTraining from "./content/de/training.json";
 import deCourses from "./content/de/courses.json";
@@ -16,10 +14,8 @@ import ruFaq from "./content/ru/faq.json";
 
 export type Lang = "de" | "ru";
 
-// Префикс сайта: локально "", на GitHub Pages — "/название-репо" (см. astro.config.mjs)
 const BASE = import.meta.env.BASE_URL.replace(/\/+$/, "");
 
-/** Внутренняя ссылка или файл из public/ с учётом префикса: withBase("/ru/") */
 export function withBase(path: string): string {
   if (/^(https?:|mailto:|tel:|#)/.test(path)) return path;
   return BASE + (path.startsWith("/") ? path : `/${path}`);
@@ -39,5 +35,4 @@ export function getContent(url: URL) {
   return content[getLang(url)];
 }
 
-// Адрес главной на каждом языке — для переключателя
 export const langHome: Record<Lang, string> = { de: withBase("/"), ru: withBase("/ru/") };

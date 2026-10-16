@@ -8,9 +8,6 @@ const f = cs.form;
 const address = `${contact.street}, ${contact.zip} ${contact.city}`;
 const routeUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
 
-// Пока бэкенд для формы не выбран, endpoint пустой:
-// форма проверяется и открывает почтовую программу с готовым письмом.
-// Когда появится сервис отправки — вписать его URL сюда.
 const FORM_ENDPOINT = "";
 ---
 
@@ -94,7 +91,6 @@ const FORM_ENDPOINT = "";
         <textarea id="f-message" name="message" rows="4"></textarea>
       </div>
 
-      <!-- ловушка для спам-ботов: люди это поле не видят -->
       <div class="hp" aria-hidden="true">
         <label for="f-website">Website</label>
         <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off" />
@@ -138,10 +134,8 @@ const FORM_ENDPOINT = "";
       e.preventDefault();
       const data = new FormData(form);
 
-      // бот заполнил скрытое поле — молча выходим
       if (data.get("website")) return;
 
-      // проверка обязательных полей
       let valid = true;
       form.querySelectorAll<HTMLInputElement>("[required]").forEach((field) => {
         const ok = field.type === "checkbox" ? field.checked : field.value.trim() !== "";
@@ -165,7 +159,6 @@ const FORM_ENDPOINT = "";
       const endpoint = form.dataset.endpoint;
 
       if (endpoint) {
-        // настоящая отправка, когда появится сервис
         try {
           const res = await fetch(endpoint, {
             method: "POST",
@@ -181,7 +174,6 @@ const FORM_ENDPOINT = "";
         return;
       }
 
-      // временный вариант: письмо в почтовой программе
       const subject = `${msg("subject")}: ${payload.interest}`;
       const body =
         `${msg("name")}: ${payload.name}\n${msg("contact")}: ${payload.contact}\n${msg("interest")}: ${payload.interest}\n\n${payload.message}`;
@@ -190,7 +182,6 @@ const FORM_ENDPOINT = "";
       show(msg("success"), "ok");
     });
 
-    // убираем подсветку ошибки, как только человек начал исправлять
     form.addEventListener("input", (e) => {
       (e.target as HTMLElement).closest(".is-invalid")?.classList.remove("is-invalid");
     });
@@ -287,7 +278,6 @@ const FORM_ENDPOINT = "";
     color: var(--color-text-muted);
   }
 
-  /* Форма */
   .form {
     display: grid;
     gap: var(--space-4);

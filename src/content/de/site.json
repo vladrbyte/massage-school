@@ -1,11 +1,11 @@
 {
   "brand": {
     "name": "Zentrum für Wellness & Massage",
-    "tagline": "Massageschule in Nürnberg"
+    "tagline": "Wellness- und Massagelehrgänge"
   },
   "seo": {
-    "title": "Massageschule Nürnberg – Zentrum für Wellness & Massage",
-    "description": "Ausbildung zur Massagepraktiker/in in Nürnberg: 220 Stunden Theorie und Praxis, individueller Stundenplan, Unterricht auf Deutsch und Russisch, Ratenzahlung möglich."
+    "title": "Wellness- und Massagelehrgänge in Nürnberg – Zentrum für Wellness & Massage",
+    "description": "Privater Lehrgang in Nürnberg mit Zertifikat „Wellness- und Massagepraktiker/in“: 220 Stunden Theorie und Praxis, individueller Zeitplan, Unterricht auf Deutsch und Russisch, Ratenzahlung möglich."
   },
   "contact": {
     "phone": "+49 176 62600510",
@@ -21,7 +21,7 @@
     "tiktok": "https://www.tiktok.com/@massageschule.iman"
   },
   "nav": [
-    { "label": "Ausbildung", "href": "/#ausbildung" },
+    { "label": "Über uns", "href": "/#ueber-uns" },
     { "label": "Kurse", "href": "/#kurse" },
     { "label": "Ablauf", "href": "/#ablauf" },
     { "label": "Team", "href": "/#team" },
@@ -33,44 +33,44 @@
     "header": "Beratung anfragen"
   },
   "hero": {
-    "eyebrow": "Massageschule in Nürnberg",
+    "eyebrow": "Wellness- und Massagelehrgänge · Nürnberg",
     "titleStart": "Werden Sie",
-    "titleAccent": "Massagepraktiker/in",
-    "lead": "220 Stunden Theorie und Praxis, ein Stundenplan, der zu Ihrem Leben passt, und ein Abschlusszertifikat, mit dem Sie direkt in den Beruf starten.",
+    "titleAccent": "Wellness- und Massagepraktiker/in",
+    "lead": "220 Stunden Theorie und Praxis, ein Zeitplan, der zu Ihrem Leben passt, und ein privatrechtliches Zertifikat zum Abschluss des Lehrgangs.",
     "secondary": "Kurse ansehen",
     "facts": [
       { "value": "220", "unit": "Std.", "label": "Theorie & Praxis" },
-      { "value": "15", "unit": "Jahre", "label": "Erfahrung in Deutschland" },
+      { "value": "15", "unit": "Jahre", "label": "Erfahrung, davon 5 in Deutschland" },
       { "value": "DE · RU", "unit": "", "label": "Unterricht & Prüfung" },
-      { "value": "12", "unit": "Monate", "label": "Ratenzahlung möglich" }
+      { "value": "6 / 12", "unit": "Monate", "label": "Ratenzahlung möglich" }
     ],
     "card": {
       "title": "Start jederzeit",
-      "text": "Sie beginnen, wann es Ihnen passt – mit individuellem Stundenplan."
+      "text": "Sie beginnen, wann es Ihnen passt – mit individuellem Zeitplan."
     },
     "media": {
       "main": "Video: Hände bei der Massage (Loop, ohne Ton)",
-      "small": "Foto: Lehrerin mit Schülerin"
+      "small": "Foto: Kursleiterin mit Teilnehmerin"
     }
   },
   "services": {
     "eyebrow": "Massage genießen",
-    "title": "Massage-Termine bei unseren Schülerinnen",
-    "text": "Unsere Schülerinnen massieren unter Aufsicht ihrer Lehrerin – mit viel Sorgfalt und Aufmerksamkeit. So unterstützen Sie die Ausbildung und gönnen sich gleichzeitig eine Auszeit.",
+    "title": "Massage-Termine bei unseren Kursteilnehmerinnen",
+    "text": "Unsere Kursteilnehmerinnen massieren unter Aufsicht ihrer Kursleiterin – mit viel Sorgfalt und Aufmerksamkeit. So unterstützen Sie die Teilnehmerinnen beim Üben und gönnen sich gleichzeitig eine Auszeit.",
     "items": ["Ganzkörpermassage", "Kopf- und Fußmassage", "Hot-Stone-Massage", "Gesichtsmassage"],
     "note": "Preise und freie Termine auf Anfrage.",
     "cta": "Termin per WhatsApp anfragen",
-    "media": "Foto: Schülerin massiert eine Kundin"
+    "media": "Foto: Teilnehmerin massiert eine Kundin"
   },
   "contactSection": {
     "eyebrow": "Kontakt",
     "title": "Lassen Sie sich kostenlos beraten",
-    "lead": "Schreiben Sie uns – wir melden uns so schnell wie möglich und beantworten alle Fragen zur Ausbildung.",
+    "lead": "Schreiben Sie uns – wir melden uns so schnell wie möglich und beantworten alle Fragen zum Lehrgang.",
     "form": {
       "name": "Ihr Name",
       "contact": "Telefon oder E-Mail",
       "interest": "Ich interessiere mich für",
-      "interestOptions": ["Ausbildung zur Massagepraktiker/in", "Einen bestimmten Kurs", "Einen Massage-Termin", "Etwas anderes"],
+      "interestOptions": ["Den kompletten Lehrgang (220 Stunden)", "Einen bestimmten Kurs", "Einen Massage-Termin", "Etwas anderes"],
       "message": "Nachricht (optional)",
       "consent": "Ich bin damit einverstanden, dass meine Angaben zur Bearbeitung meiner Anfrage verwendet werden. Mehr dazu in der",
       "consentLink": "Datenschutzerklärung",
@@ -81,7 +81,7 @@
     "routeLabel": "Route planen"
   },
   "footer": {
-    "text": "Ausbildung zur Massagepraktiker/in und Massage-Termine in Nürnberg.",
+    "text": "Private Wellness- und Massagelehrgänge sowie Massage-Termine in Nürnberg.",
     "legal": [
       { "label": "Impressum", "href": "/impressum" },
       { "label": "Datenschutz", "href": "/datenschutz" }
@@ -115,6 +115,6 @@
     "mailName": "Name",
     "mailContact": "Kontakt",
     "mailInterest": "Interesse",
-    "seal": "MASSAGEPRAKTIKER/IN · ZERTIFIKAT · NÜRNBERG ·"
+    "certNote": "Privatrechtliches Zertifikat"
   }
 }

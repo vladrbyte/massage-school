@@ -1,5 +1,5 @@
 ---
-import { getContent } from "../i18n";
+import { getContent, withBase } from "../i18n";
 
 const { training, site } = getContent(Astro.url);
 const { certificate } = training;
@@ -7,25 +7,15 @@ const { certificate } = training;
 
 <section class="section certificate" aria-labelledby="zertifikat-title">
   <div class="container certificate__grid">
-    <div class="seal-wrap" data-reveal>
-      <!-- декоративная "печать" сертификата -->
-      <svg class="seal" viewBox="0 0 240 240" aria-hidden="true">
-        <defs>
-          <path id="seal-circle" d="M120 120 m-86 0 a86 86 0 1 1 172 0 a86 86 0 1 1 -172 0" />
-        </defs>
-        <circle cx="120" cy="120" r="112" fill="none" stroke="currentColor" stroke-width="1" />
-        <circle cx="120" cy="120" r="70" fill="none" stroke="currentColor" stroke-width="0.8" stroke-dasharray="2 5" />
-        <text font-size="13" letter-spacing="5" fill="currentColor">
-          <textPath href="#seal-circle">{site.ui.seal}</textPath>
-        </text>
-        <g transform="translate(120 120)" fill="currentColor">
-          <g class="seal__mark">
-            <path d="M0-34c9 10.5 9 23 0 36-9-13-9-25.5 0-36z" opacity=".9" />
-            <path d="M-30-12c12 1.2 22 9.5 30 22-15 3-27-5-30-22zM30-12c-3 17-15 25-30 22 8-12.5 18-20.8 30-22z" opacity=".65" />
-            <rect x="-26" y="18" width="52" height="1.2" />
-          </g>
-        </g>
-      </svg>
+    <div class="doc-wrap" data-reveal aria-hidden="true">
+      <div class="doc">
+        <img class="doc__logo" src={withBase("/media/logo-mark.png")} alt="" width="420" height="290" />
+        <span class="doc__line doc__line--title"></span>
+        <span class="doc__line"></span>
+        <span class="doc__line doc__line--short"></span>
+        <span class="doc__badge">{site.ui.certNote}</span>
+        <span class="doc__sign"></span>
+      </div>
     </div>
 
     <div class="certificate__text">
@@ -49,29 +39,67 @@ const { certificate } = training;
     align-items: center;
   }
 
-  .seal-wrap {
+  .doc-wrap {
     display: grid;
     place-items: center;
-    aspect-ratio: 1;
-    max-width: 360px;
-    width: 100%;
-    margin-inline: auto;
-    border-radius: 50%;
-    background: radial-gradient(circle, var(--color-surface) 0 62%, transparent 63%);
+    padding: var(--space-6);
   }
 
-  .seal {
-    width: 88%;
-    color: var(--color-gold);
-    animation: spin 60s linear infinite;
+  .doc {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    gap: var(--space-3);
+    width: min(300px, 100%);
+    aspect-ratio: 1 / 1.414;
+    padding: 12% 12% 10%;
+    background: var(--color-bg);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-sm);
+    box-shadow:
+      12px 10px 0 -1px var(--color-surface-2),
+      12px 10px 0 0 var(--color-line),
+      var(--shadow-card);
+    transform: rotate(-3deg);
   }
 
-  .seal__mark { animation: spin 60s linear infinite reverse; transform-origin: 0 0; }
+  .doc__logo { width: 38%; margin-bottom: var(--space-2); }
 
-  @keyframes spin { to { transform: rotate(360deg); } }
+  .doc__line {
+    width: 80%;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--color-surface-2);
+  }
 
-  @media (prefers-reduced-motion: reduce) {
-    .seal, .seal__mark { animation: none; }
+  .doc__line--title {
+    width: 90%;
+    height: 10px;
+    background: var(--color-sage);
+    opacity: 0.55;
+  }
+
+  .doc__line--short { width: 55%; }
+
+  .doc__badge {
+    margin-top: var(--space-3);
+    padding: 0.25rem 0.7rem;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-pill);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-align: center;
+    color: var(--color-text-muted);
+  }
+
+  .doc__sign {
+    align-self: end;
+    justify-self: end;
+    width: 40%;
+    height: 1px;
+    background: var(--color-text-muted);
+    opacity: 0.5;
   }
 
   .certificate__text {
@@ -79,8 +107,26 @@ const { certificate } = training;
     gap: var(--space-4);
   }
 
+  .certificate__note {
+    display: flex;
+    gap: var(--space-3);
+    align-items: flex-start;
+    padding: var(--space-4) var(--space-5);
+    border-left: 2px solid var(--color-gold);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    background: var(--color-surface);
+    font-size: 0.95rem;
+    color: var(--color-text);
+  }
+
+  .certificate__note svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: var(--color-gold);
+  }
+
   .careers__title {
-    margin-top: var(--space-5);
+    margin-top: var(--space-4);
     font-size: 1.5rem;
   }
 
@@ -103,6 +149,6 @@ const { certificate } = training;
 
   @media (max-width: 800px) {
     .certificate__grid { grid-template-columns: 1fr; }
-    .seal-wrap { max-width: 240px; }
+    .doc { width: min(220px, 70%); }
   }
 </style>
